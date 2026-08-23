@@ -5,7 +5,7 @@ namespace IronGridConsumer.Models;
 public class Uav
 {
     public int AssetId { get; set; }
-    public string Type { get; set; }
+    public string AssetType { get; set; }
     public string RawValue { get; set; }
     public string ProcessedStatus { get; set; }
     public bool IsVerified { get; set; }

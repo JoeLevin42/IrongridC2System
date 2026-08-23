@@ -2,6 +2,7 @@
 
 using IronGridConsumer.Data;
 using IronGridConsumer.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
 namespace IronGridConsumer.Services;
@@ -14,7 +15,7 @@ public class Proccessor
         _context = context;
     }
     public async Task<bool> ProccessAssetLiveStatus(string json)
-    {
+    {   //need to check if the assests id exists for not getting constaint violation
         try
         {
             var assestLiveObj = JsonSerializer.Deserialize<AssetLiveStatus>(json);
@@ -23,9 +24,18 @@ public class Proccessor
                 return false;
             }
 
-            //logic rules here hand check if exists nad remove
-           var exists = _context.AssetLiveStatus
-                .FirstOrDefault(e => e.AssetId == assestLiveObj.AssetId);
+            //need to check that the assets hitseld alive
+
+            var checkAssets = await _context.Assets
+                .FirstOrDefaultAsync(e => e.Id == assestLiveObj.AssetId);
+            if (checkAssets == null)
+            {
+                return false;
+            }
+
+            //logic rules here hand check if exists nad remove ?? await
+            var exists = await _context.AssetLiveStatus
+                .FirstOrDefaultAsync(e => e.AssetId == assestLiveObj.AssetId);
             if (exists != null)
             {
                 _context.AssetLiveStatus.Remove(exists);
@@ -43,4 +53,6 @@ public class Proccessor
         }
 
     }
+
+ 
 }

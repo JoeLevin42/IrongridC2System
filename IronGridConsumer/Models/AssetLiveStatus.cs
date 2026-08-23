@@ -9,7 +9,7 @@ public class AssetLiveStatus
     public int AssetId { get; set; }
 
     [RegularExpression("^UAV|PerimeterSensor$")]
-    public string Type { get; set; }
+    public string AssetType { get; set; }
     [Required]
     public string RawValue { get; set; }
 

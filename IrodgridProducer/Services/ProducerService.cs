@@ -45,4 +45,10 @@ public class ProducerService
             return false;
         }
     }
+
+    public void Dispose()
+    {
+        _producer.Flush(TimeSpan.FromSeconds(2));
+        _producer.Dispose();
+    }
 }

@@ -42,7 +42,7 @@ public class TypeSorterService
                 var newObj = new PerimeterAssetsLive
                 {
                     AssetId = obj.AssetId,
-                    Type = obj.AssetType,
+                    AssetType = obj.AssetType,
                     RawValue = obj.RawValue,
                     LastUpdate = obj.LastUpdate
                 };

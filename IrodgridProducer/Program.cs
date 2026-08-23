@@ -44,3 +44,5 @@ foreach (var p in finalsortedPerimeterList)
 }
 
 Console.WriteLine("END Produce PerimeterSensor");
+
+producer.Dispose(); //Wash the water!

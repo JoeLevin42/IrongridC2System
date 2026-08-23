@@ -3,14 +3,14 @@ Plan for create the basic consumer --
 here we need to handle to get the data from kafak and insert into sql 
 -Part 1: basic config -
 1. we need to create the appsettings with conneciton to mysql and kafka - V
-2. create configuration obj that can read from appsettings  -
+2. create configuration obj that can read from appsettings  - V
 
 
 Part 2:
-1. create db context with the realtionships -
-2. create the data proccessor service that insert into the db
+1. create db context with the realtionships -V
+2. create the data proccessor service that insert into the db =V
 
 Part 3 - Program.cs
-1. write the DI 
-2. create the db ensure (scoped)
+1. write the DI  -V
+2. create the db ensure (scoped) -V
 3. to recive from kafaka
