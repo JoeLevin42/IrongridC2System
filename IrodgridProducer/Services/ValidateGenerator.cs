@@ -13,22 +13,26 @@ public class ValidateGenerator
         {
             string generatedProcessedStatus = "Warning";
             bool generatedIsVerified = false;
+            int checkVal;
+            if (int.TryParse(uav.RawValue, out checkVal))
+            {
 
-           if (uav.RawValue > 0 || uav.RawValue < 20)
-            {
-                generatedProcessedStatus = "Warning";
-                generatedIsVerified = true;
-            }
-            else if (uav.RawValue > 20 || uav.RawValue <= 100)
-            {
-                generatedProcessedStatus = "Stable";
-                generatedIsVerified = true;
+                if (int.Parse(uav.RawValue) > 0 || int.Parse(uav.RawValue) < 20)
+                {
+                    generatedProcessedStatus = "Warning";
+                    generatedIsVerified = true;
+                }
+                else if (int.Parse(uav.RawValue) > 20 || int.Parse(uav.RawValue) <= 100)
+                {
+                    generatedProcessedStatus = "Stable";
+                    generatedIsVerified = true;
+                }
             }
 
             var newFullObj = new UAVAssetsLive
             {
                 AssetId = uav.AssetId,
-                AssetType = uav.AssetType,
+                Type = uav.Type,
                 RawValue = uav.RawValue,
                 ProcessedStatus = generatedProcessedStatus,
                 IsVerified = generatedIsVerified,
@@ -70,7 +74,7 @@ public class ValidateGenerator
             var newFullObj = new PerimeterAssetsLive
             {
                 AssetId = per.AssetId,
-                AssetType = per.AssetType,
+                Type = per.Type,
                 RawValue = per.RawValue,
                 ProcessedStatus = generatedProcessedStatus,
                 IsVerified = generatedIsVerified,
