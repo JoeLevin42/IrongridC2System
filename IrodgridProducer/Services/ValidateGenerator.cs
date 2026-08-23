@@ -34,7 +34,7 @@ public class ValidateGenerator
             var newFullObj = new UAVAssetsLive
             {
                 AssetId = uav.AssetId,
-                Type = uav.Type,
+                AssetType = uav.AssetType,
                 RawValue = uav.RawValue,
                 ProcessedStatus = generatedProcessedStatus,
                 IsVerified = generatedIsVerified,
@@ -74,7 +74,7 @@ public class ValidateGenerator
             var newFullObj = new PerimeterAssetsLive
             {
                 AssetId = per.AssetId,
-                Type = per.Type,
+                AssetType = per.AssetType,
                 RawValue = per.RawValue,
                 ProcessedStatus = generatedProcessedStatus,
                 IsVerified = generatedIsVerified,

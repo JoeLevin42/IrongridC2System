@@ -18,7 +18,7 @@ public class TypeSorterService
                 var newObj = new UAVAssetsLive
                 {
                     AssetId = obj.AssetId,
-                    Type = obj.AssetType,
+                    AssetType = obj.AssetType,
                     RawValue = obj.RawValue, //need to parse to int 
                     LastUpdate = obj.LastUpdate
                 };
