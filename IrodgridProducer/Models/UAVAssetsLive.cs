@@ -10,4 +10,5 @@ public class UAVAssetsLive
     public string? ProcessedStatus { get; set; }
     public bool? IsVerified { get; set; }
     public DateTime LastUpdate { get; set; }
+    public bool Length { get; internal set; }
 }

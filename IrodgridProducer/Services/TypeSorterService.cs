@@ -9,48 +9,48 @@ public class TypeSorterService
     {   
 
         
-        List<UAVAssetsLive> filteredList = new();
+        List<UAVAssetsLive> result = new();
 
         foreach (var obj in listOfObj)
         {
-            if (obj.Type == "UAV")
+            if (obj.AssetType == "UAV")
             {
                 var newObj = new UAVAssetsLive
                 {
                     AssetId = obj.AssetId,
-                    Type = obj.Type,
+                    Type = obj.AssetType,
                     RawValue = obj.RawValue, //need to parse to int 
                     LastUpdate = obj.LastUpdate
                 };
-                filteredList.Add(newObj);
+                result.Add(newObj);
             }
         }
 
-        return filteredList;
+        return result;
     }
 
     public List<PerimeterAssetsLive> FilterToPerimeterSensor(List<AssetsLiveRaw> listOfObj)
     {
 
 
-        List<PerimeterAssetsLive> filteredList = new();
+        List<PerimeterAssetsLive> result = new();
 
         foreach (var obj in listOfObj)
         {
-            if (obj.Type == "PerimeterSensor")
+            if (obj.AssetType == "PerimeterSensor")
             {
                 var newObj = new PerimeterAssetsLive
                 {
                     AssetId = obj.AssetId,
-                    Type = obj.Type,
+                    Type = obj.AssetType,
                     RawValue = obj.RawValue,
                     LastUpdate = obj.LastUpdate
                 };
-                filteredList.Add(newObj);
+                result.Add(newObj);
             }
         }
 
-        return filteredList;
+        return result;
     }
 
 

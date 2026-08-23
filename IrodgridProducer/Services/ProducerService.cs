@@ -20,7 +20,7 @@ public class ProducerService
     }
 
 
-    public bool ProduceGeneric<T>(T obj , string topicName) 
+    public async Task<bool> ProduceGeneric<T>(T obj , string topicName) 
     {
         try
         {
@@ -36,7 +36,7 @@ public class ProducerService
                 Value = json
             };
 
-           _producer.Produce(topicName, msg);
+           await _producer.ProduceAsync(topicName, msg);
             return true;
         }
         catch (JsonException ex)
