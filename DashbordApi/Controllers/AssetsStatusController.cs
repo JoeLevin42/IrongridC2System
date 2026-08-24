@@ -38,14 +38,14 @@ public class AssetsStatusController : ControllerBase
     }
 
     [HttpGet("({id})")] //this need to be reddis!!!!!!!!!
-    public async Task<ActionResult<AssetLiveStatusDto>> GetAssetsLiveByIdAsync(int id)
+    public async Task<ActionResult<AssetsWithLastLiveDto>> GetAssetsLiveByIdAsync(int id)
     {
         var watch = Stopwatch.StartNew();
         var key = $"AssetLiveStatusDto:{id}";
         var cached = await _redis.StringGetAsync(key);
         if (cached.HasValue)
         {
-            var chaceResult = JsonSerializer.Deserialize<AssetLiveStatus>(cached);
+            var chaceResult = JsonSerializer.Deserialize<AssetsWithLastLiveDto>(cached);
             Console.WriteLine("Reddis is working!!!!!!");
             return Ok(chaceResult);
         }

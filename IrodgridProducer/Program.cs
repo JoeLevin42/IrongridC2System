@@ -25,17 +25,12 @@ var sortedPerimeter = typeSorter.FilterToPerimeterSensor(rawData);
 var finalUavList = validateGenerator.UAVHandler(sortedUav);
 var finalsortedPerimeterList = validateGenerator.PermiterSensorHandler(sortedPerimeter);
 
-//Console.WriteLine(rawData.Count);
-//Console.WriteLine(sortedUav.Count);
-//Console.WriteLine(finalUavList.Count); //tests!!
-//Console.WriteLine(finalsortedPerimeterList.Count);
-
 
 foreach (var u in finalUavList)
 {
     await producer.ProduceGeneric(u, uavTopic);
-    Console.WriteLine();
 }
+   
 Console.WriteLine("END Produce uav");
 
 foreach (var p in finalsortedPerimeterList)
@@ -45,4 +40,4 @@ foreach (var p in finalsortedPerimeterList)
 
 Console.WriteLine("END Produce PerimeterSensor");
 
-producer.Dispose(); //Wash the water!
+producer.Dispose(); //clean 

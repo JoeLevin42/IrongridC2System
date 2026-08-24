@@ -6,9 +6,9 @@ namespace DashbordApi.Models;
 public class RedisResult
 {
     public long ElapsedTime { get; }
-    public AssetLiveStatusDto AssetLiveStatusDto { get; }
+    public AssetsWithLastLiveDto AssetLiveStatusDto { get; }
 
-    public RedisResult(AssetLiveStatusDto AssetLiveStatus, long elapsedTime)
+    public RedisResult(AssetsWithLastLiveDto AssetLiveStatus, long elapsedTime)
     {
         AssetLiveStatusDto = AssetLiveStatus;
         ElapsedTime = elapsedTime;

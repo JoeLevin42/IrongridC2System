@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace DashbordApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("assets")]
 public class AssetsController : ControllerBase
 {
     private readonly AssetsRepository _repo;
@@ -15,7 +15,7 @@ public class AssetsController : ControllerBase
     }
 
     [HttpGet("{id}")] //get by id
-    public async Task<ActionResult<Assets>> GetAssetsByIdAsync(int id)
+    public async Task<ActionResult<AssetsReadingDto>> GetAssetsByIdAsync(int id)
     {
         var result = await _repo.GetAssetesByIdAsync(id);
         if (result == null)
@@ -37,7 +37,7 @@ public class AssetsController : ControllerBase
             return BadRequest();
         }
 
-        return Created();
+        return StatusCode(201);
     }
 
     [HttpPut("{id}")]

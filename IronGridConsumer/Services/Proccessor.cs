@@ -26,12 +26,12 @@ public class Proccessor
 
             //need to check that the assets hitseld alive
 
-            //var checkAssets = await _context.Assets.AsNoTracking()
-            //    .AnyAsync(e => e.Id == assestLiveObj.AssetId);
-            //if (checkAssets == null)
-            //{
-            //    return false;
-            //}
+            var checkAssets = await _context.Assets.AsNoTracking()
+                .AnyAsync(e => e.Id == assestLiveObj.AssetId);
+            if (checkAssets == false)
+            {
+                return false;
+            }
 
             //logic rules here hand check if exists nad remove ?? await
             var exists = await _context.AssetLiveStatus
@@ -40,11 +40,11 @@ public class Proccessor
             {
                 _context.AssetLiveStatus.Remove(exists);
             } 
-                
 
             _context.AssetLiveStatus.Add(assestLiveObj);
             await _context.SaveChangesAsync();
             return true;
+                
         }
         catch (Exception ex)
         {

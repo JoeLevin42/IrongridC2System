@@ -6,6 +6,7 @@ using IronGridConsumer.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using static Confluent.Kafka.ConfigPropertyNames;
 
 var configuration = new ConfigurationBuilder()
     .SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
@@ -68,7 +69,10 @@ while (true)
     {
         var proccessor = scope.ServiceProvider.GetRequiredService<Proccessor>();
         var res = await proccessor.ProccessAssetLiveStatus(result.Message.Value);
-        if (res) { Console.WriteLine($"Proccessed to DB {result.Message.Value}"); }
+        if (res) { 
+            Console.WriteLine($"Proccessed to DB {result.Message.Value}");
+            
+        }
         //TODO !!//we will want late to do the enablueautocommit = false , and commit only if true!
         else { Console.WriteLine("Something failed"); }
     }

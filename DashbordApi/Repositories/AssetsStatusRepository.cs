@@ -1,8 +1,10 @@
 
 using DashbordApi.Data;
 using DashbordApi.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Net.NetworkInformation;
 
 namespace DashbordApi.Repositories;
 
@@ -14,23 +16,33 @@ public class AssetsStatusRepository
         _context = context;
     }
 
-    public async Task<IEnumerable<AssetLiveStatusDto>> GetAllAssetLiveAsync()
+    public async Task<IEnumerable<AssetsWithLastLiveDto>> GetAllAssetLiveAsync()
     {
-        var dtoResultList = _context.AssetLiveStatus
-            .Select(e=> new AssetLiveStatusDto
+        var dtoResultList = await _context.AssetLiveStatus
+            .Select(e => new AssetsWithLastLiveDto
             {
-                AssetId = e.AssetId,
-                AssetType = e.AssetType,
-                RawValue = e.RawValue,
-                ProcessedStatus = e.ProcessedStatus,
-                IsVerified = e.IsVerified,
-                LastUpdate = e.LastUpdate,
+                Id = e.Assets.Id,
+                UnitId = e.Assets.UnitId,
+                AssetSerial = e.Assets.AssetSerial,
+                AssetType = e.Assets.AssetType,
+                LastLiveStatus = new AssetLiveStatusDto
+                {
+
+                    AssetId = e.AssetId,
+                    AssetType = e.AssetType,
+                    RawValue = e.RawValue,
+                    ProcessedStatus = e.ProcessedStatus,
+                    IsVerified = e.IsVerified,
+                    LastUpdate = e.LastUpdate,
+                }
+
             }).ToListAsync();
 
-        return await dtoResultList;
+        return  dtoResultList;
+
     }
 
-    public async Task<AssetLiveStatusDto?> GetAssetsLiveByIdAsync(int id)
+    public async Task<AssetsWithLastLiveDto?> GetAssetsLiveByIdAsync(int id)
     {
         var theAssetes = await _context.AssetLiveStatus.FirstOrDefaultAsync(e => e.AssetId == id);
 
@@ -38,18 +50,32 @@ public class AssetsStatusRepository
         {
             return null;
         }
+        var result =  _context.AssetLiveStatus.Where(e => e.AssetId == id)
+       .Select(e => new AssetsWithLastLiveDto
+         {
+             Id = e.Assets.Id,
+             UnitId = e.Assets.UnitId,
+             AssetSerial = e.Assets.AssetSerial,
+             AssetType = e.Assets.AssetType,
+             LastLiveStatus = new AssetLiveStatusDto
+             {
 
-        var theAssetesDto = new AssetLiveStatusDto
-        {
-            AssetId = theAssetes.AssetId,
-            AssetType = theAssetes.AssetType,
-            RawValue = theAssetes.RawValue,
-            ProcessedStatus = theAssetes.ProcessedStatus,
-            IsVerified = theAssetes.IsVerified,
-            LastUpdate = theAssetes.LastUpdate,
-        };
+                 AssetId = e.AssetId,
+                 AssetType = e.AssetType,
+                 RawValue = e.RawValue,
+                 ProcessedStatus = e.ProcessedStatus,
+                 IsVerified = e.IsVerified,
+                 LastUpdate = e.LastUpdate,
+             }
 
-        return theAssetesDto;
+         }).First();
+
+
+
+
+        return result;
+
+
     }
 
     public async Task<IEnumerable<AssetsWithLastLiveDto?>> GetAssetsLivesByStatusAsync(string status)

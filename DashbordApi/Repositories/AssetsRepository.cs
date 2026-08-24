@@ -14,7 +14,7 @@ public class AssetsRepository
     }
 
     //GET `/api/assets/{id}` //later changes to an dto
-    public async Task<Assets?> GetAssetesByIdAsync(int id)
+    public async Task<AssetsReadingDto?> GetAssetesByIdAsync(int id)
     {
         var theAssets = await _context.Assets.FirstOrDefaultAsync(e => e.Id == id);
 
@@ -23,7 +23,15 @@ public class AssetsRepository
             return null;
         }
 
-        return theAssets;
+        var AssetsDto = new AssetsReadingDto
+        {
+            Id = theAssets.Id,
+            UnitId = theAssets.UnitId,
+            AssetSerial = theAssets.AssetSerial,
+            AssetType = theAssets.AssetType,
+        };
+
+        return AssetsDto;
     }
 
     //POST `/api/assets/units` //later dto?

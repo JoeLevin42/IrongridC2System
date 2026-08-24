@@ -10,5 +10,5 @@ public class AssetsWithLastLiveDto
     public string AssetSerial { get; set; }
     public string AssetType { get; set; } = "GenericAsset";
 
-    public AssetLiveStatusDto LastLiveStatus { get; set; }
+    public AssetLiveStatusDto LastLiveStatus { get; set; } 
 }
