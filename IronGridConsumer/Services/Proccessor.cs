@@ -27,7 +27,7 @@ public class Proccessor
             //need to check that the assets hitseld alive
 
             //var checkAssets = await _context.Assets.AsNoTracking()
-            //    .FirstOrDefaultAsync(e => e.Id == assestLiveObj.AssetId);
+            //    .AnyAsync(e => e.Id == assestLiveObj.AssetId);
             //if (checkAssets == null)
             //{
             //    return false;
@@ -39,8 +39,8 @@ public class Proccessor
             if (exists != null)
             {
                 _context.AssetLiveStatus.Remove(exists);
-                await _context.SaveChangesAsync();
             } 
+                
 
             _context.AssetLiveStatus.Add(assestLiveObj);
             await _context.SaveChangesAsync();

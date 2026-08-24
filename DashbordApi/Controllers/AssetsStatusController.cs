@@ -2,6 +2,7 @@ using DashbordApi.Models;
 using DashbordApi.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DashbordApi.Controllers;
 
@@ -10,7 +11,9 @@ namespace DashbordApi.Controllers;
 public class AssetsStatusController : ControllerBase
 {
     private readonly AssetsStatusRepository _repo;
-    public AssetsStatusController(AssetsStatusRepository repo)
+    private readonly HttpClient _client;
+    private readonly IDatabase _redis;
+    public AssetsStatusController(AssetsStatusRepository repo ,)
     {
         _repo = repo;
     }
@@ -24,6 +27,8 @@ public class AssetsStatusController : ControllerBase
     [HttpGet("({id})")] //this need to be reddis!!!!!!!!!
     public async Task<ActionResult<AssetLiveStatusDto>> GetAssetsLiveByIdAsync(int id)
     {
+
+
         var result = await _repo.GetAssetsLiveByIdAsync(id);
         if (result == null)
         {
