@@ -13,7 +13,9 @@ var conString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(
             dbContextOptions => dbContextOptions
                 .UseMySql(conString, ServerVersion.AutoDetect(conString)));
-builder.Services.AddScoped<DashbordRepository>();
+builder.Services.AddScoped<AssetsStatusRepository>();
+builder.Services.AddScoped<AssetsRepository>();
+builder.Services.AddScoped<OperationsReportsRepository>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

@@ -10,7 +10,11 @@ public class TypeSorterService
 
         
         List<UAVAssetsLive> result = new();
-
+        
+        if (listOfObj == null)
+        {
+            return result;
+        }
         foreach (var obj in listOfObj)
         {
             if (obj.AssetType == "UAV")
@@ -28,12 +32,18 @@ public class TypeSorterService
 
         return result;
     }
-
+        
     public List<PerimeterAssetsLive> FilterToPerimeterSensor(List<AssetsLiveRaw> listOfObj)
     {
 
 
         List<PerimeterAssetsLive> result = new();
+      
+
+        if (listOfObj == null)
+        {
+            return result;
+        }
 
         foreach (var obj in listOfObj)
         {

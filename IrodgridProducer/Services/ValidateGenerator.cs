@@ -18,12 +18,12 @@ public class ValidateGenerator
 
             if (isValid)
             {
-                if (number >0 || number < 20)
+                if (number >0 && number < 20)
                 {
                     generatedProcessedStatus = "Warning";
                     generatedIsVerified = true;
                 }
-                else if (number >= 20|| number <= 100)
+                else if (number >= 20 && number <= 100)
                 {
 
                     generatedProcessedStatus = "Stable";

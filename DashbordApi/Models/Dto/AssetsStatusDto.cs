@@ -3,24 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DashbordApi.Models;
 
-public class AssetLiveStatus
+public class AssetsStatusDto
 {
-    [Key]
     public int AssetId { get; set; }
+    public string AssetSerial { get; set; }
 
-    [RegularExpression("^(UAV|PerimeterSensor)$")]
     public string AssetType { get; set; }
-    [Required]
-    public string RawValue { get; set; }
-
-    [RegularExpression("^(Stable|Warning)$")]
     public string ProcessedStatus { get; set; }
-    [Required]
-    public bool IsVerified { get; set; }
-    [Required]
-    public DateTime LastUpdate { get; set; }
-    
 
-    //Np 
-    public Assets Assets { get; set; } = null!;
+    public bool IsVerified { get; set; }
+
+    public DateTime LastUpdate { get; set; }
 }
+
+
+             

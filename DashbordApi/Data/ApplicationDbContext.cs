@@ -23,6 +23,7 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Units>() //actually need to think about this
             .HasMany(e => e.Assets)
             .WithOne(e => e.Units)
+            .HasForeignKey(e => e.UnitId)
             .OnDelete(DeleteBehavior.Cascade); //need to think on this
 
         modelBuilder.Entity<AssetLiveStatus>()

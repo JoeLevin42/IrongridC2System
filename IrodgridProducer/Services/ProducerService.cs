@@ -44,6 +44,11 @@ public class ProducerService
             Console.WriteLine(ex.ToString());
             return false;
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+            return false;
+        }
     }
 
     public void Dispose()

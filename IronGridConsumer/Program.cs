@@ -68,6 +68,7 @@ while (true)
         var proccessor = scope.ServiceProvider.GetRequiredService<Proccessor>();
         var res = await proccessor.ProccessAssetLiveStatus(result.Message.Value);
         if (res) { Console.WriteLine($"Proccessed to DB {result.Message.Value}"); }
+        //TODO !!//we will want late to do the enablueautocommit = false , and commit only if true!
         else { Console.WriteLine("Something failed"); }
     }
 
