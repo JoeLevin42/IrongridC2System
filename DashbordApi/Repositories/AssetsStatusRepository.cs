@@ -70,10 +70,10 @@ public class AssetsStatusRepository
 
          }).First();
 
-
-
-
         return result;
+
+
+
 
 
     }
