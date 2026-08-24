@@ -46,7 +46,7 @@ public class AssetsStatusController : ControllerBase
         if (cached.HasValue)
         {
             var chaceResult = JsonSerializer.Deserialize<AssetLiveStatus>(cached);
-            Console.WriteLine("Reddis is working!!!!!!!!");
+            Console.WriteLine("Reddis is working!!!!!!");
             return Ok(chaceResult);
         }
         
