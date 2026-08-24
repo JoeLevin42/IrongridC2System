@@ -73,7 +73,7 @@ public class OperationsReportsRepository
                 UnitId = e.Id,
                 UnitName = e.UnitName,
                 Sector = e.Sector,
-                TotalAssets = e.Assets.Count,
+                TotalAssets = e.Assets.Count(),
                 StableAssets = e.Assets.Count(e => e.AssetLiveStatus.ProcessedStatus == "Stable"),
                 WarningAssets = e.Assets.Count(e => e.AssetLiveStatus.ProcessedStatus == "Warning"),
                 UnverifiedAssets = e.Assets.Count(e => e.AssetLiveStatus.IsVerified == false),

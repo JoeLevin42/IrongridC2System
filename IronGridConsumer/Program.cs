@@ -48,8 +48,9 @@ using var consumer = new ConsumerBuilder<Ignore, string>(config).Build() ;
 //this is the consumer config and build
 //now start the while loop to recive data
 
-//string[] topics = configuration["Kafka:Topics"] ?? new["uav","perimeterSensor";
-string[] topics = { "uav", "perimeterSensor" };
+string[] topics = configuration.
+        GetSection("Kafka:Topics").Get<string[]>() ?? Array.Empty<string>(); //need to checkthis!
+//string[] topics = { "uav", "perimeterSensor" };
 consumer.Subscribe(topics);
 
 while (true)
