@@ -5,20 +5,66 @@ namespace IrodgridProducer.Services;
 
 public class TypeSorterService
 {
-    public List<object> SortToType(List<AssetsLiveRaw> listOfObj ,string type)
+    public List<UAVAssetsLive> FilterToUav(List<AssetsLiveRaw> listOfObj)
     {   
 
-        //this is generic gets as param the type and returns filterd list
-        List<object> sortedList = new();
-
+        
+        List<UAVAssetsLive> result = new();
+        
+        if (listOfObj == null)
+        {
+            return result;
+        }
         foreach (var obj in listOfObj)
         {
-            if (obj.AssetType == type)
+            if (obj.AssetType == "UAV")
             {
-                sortedList.Add(obj);
+                var newObj = new UAVAssetsLive
+                {
+                    AssetId = obj.AssetId,
+                    AssetType = obj.AssetType,
+                    RawValue = obj.RawValue, //need to parse to int 
+                    LastUpdate = obj.LastUpdate
+                };
+                result.Add(newObj);
             }
         }
 
-        return sortedList;
+        return result;
     }
+        
+    public List<PerimeterAssetsLive> FilterToPerimeterSensor(List<AssetsLiveRaw> listOfObj)
+    {
+
+
+        List<PerimeterAssetsLive> result = new();
+      
+
+        if (listOfObj == null)
+        {
+            return result;
+        }
+
+        foreach (var obj in listOfObj)
+        {
+            if (obj.AssetType == "PerimeterSensor")
+            {
+                var newObj = new PerimeterAssetsLive
+                {
+                    AssetId = obj.AssetId,
+                    AssetType = obj.AssetType,
+                    RawValue = obj.RawValue,
+                    LastUpdate = obj.LastUpdate
+                };
+                result.Add(newObj);
+            }
+        }
+
+        return result;
+    }
+
+
+
+
+
 }

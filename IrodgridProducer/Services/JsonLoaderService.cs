@@ -1,4 +1,5 @@
 
+using IrodgridProducer.Models;
 using System.Text.Json;
 
 namespace IrodgridProducer.Services;
@@ -6,13 +7,13 @@ namespace IrodgridProducer.Services;
 
 public class JsonLoaderService
 {
-    public List<object>? LoadFromJson(string filePath)
+    public List<AssetsLiveRaw>? LoadFromJson(string filePath)
     {
         try
         {
             var rawList = File.ReadAllText(filePath);
 
-            var objList = JsonSerializer.Deserialize<List<object>>(rawList);
+            var objList = JsonSerializer.Deserialize<List<AssetsLiveRaw>>(rawList);
 
             return objList;
         }

@@ -13,16 +13,22 @@ public class ValidateGenerator
         {
             string generatedProcessedStatus = "Warning";
             bool generatedIsVerified = false;
+            int number;
+            bool isValid = int.TryParse(uav.RawValue , out number);
 
-           if (uav.RawValue > 0 || uav.RawValue < 20)
+            if (isValid)
             {
-                generatedProcessedStatus = "Warning";
-                generatedIsVerified = true;
-            }
-            else if (uav.RawValue > 20 || uav.RawValue <= 100)
-            {
-                generatedProcessedStatus = "Stable";
-                generatedIsVerified = true;
+                if (number >0 && number < 20)
+                {
+                    generatedProcessedStatus = "Warning";
+                    generatedIsVerified = true;
+                }
+                else if (number >= 20 && number <= 100)
+                {
+
+                    generatedProcessedStatus = "Stable";
+                    generatedIsVerified = true;
+                }
             }
 
             var newFullObj = new UAVAssetsLive
@@ -36,14 +42,12 @@ public class ValidateGenerator
 
             };
             fullUavList.Add(newFullObj);
+
         }
 
         return fullUavList;
-
     }
-
-
-
+         
     public List<PerimeterAssetsLive> PermiterSensorHandler(List<PerimeterAssetsLive> perimeterSensorList)
     {
         List<PerimeterAssetsLive> fullPerimeterList = new();

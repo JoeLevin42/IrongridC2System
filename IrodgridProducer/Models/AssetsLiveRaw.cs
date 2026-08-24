@@ -6,7 +6,7 @@ public class AssetsLiveRaw
     public int AssetId { get; set; }
     public string AssetType { get; set; }
     public string RawValue { get; set; }
-    public string ProcessedStatus { get; set; }
-    public bool IsVerified { get; set; }
+    public string? ProcessedStatus { get; set; }
+    public bool? IsVerified { get; set; }
     public DateTime LastUpdate { get; set; }
 } 

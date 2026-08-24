@@ -1,14 +1,16 @@
-using IrodgridProducer.Models;
+using IronGridConsumer.Models;
 
-namespace IrodgridProducer.Models;
+namespace IronGridConsumer.Models;
 
-public class UAVAssetsLive
+public class Uav
 {
     public int AssetId { get; set; }
     public string AssetType { get; set; }
     public string RawValue { get; set; }
-    public string? ProcessedStatus { get; set; }
-    public bool? IsVerified { get; set; }
+    public string ProcessedStatus { get; set; }
+    public bool IsVerified { get; set; }
     public DateTime LastUpdate { get; set; }
     public bool Length { get; internal set; }
+
+ 
 }
